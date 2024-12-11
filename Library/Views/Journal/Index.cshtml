@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Library.Models.Journal>
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Журнал";
+}
+
+<h2>Журнал</h2>
+
+<p>
+    @Html.ActionLink("Добавить запись", "Create")
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Книга</th>
+            <th>Читатель</th>
+            <th>Дата выдачи</th>
+            <th>Дата возврата по плану</th>
+            <th>Фактическая дата возврата</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BookName</td>
+                <td>@item.ClientFullName</td>
+                <td>@item.DateBeg.ToShortDateString()</td>
+                <td>@item.DateEnd.ToShortDateString()</td>
+                <td>
+                    @(item.DateRet.HasValue ? item.DateRet.Value.ToShortDateString() : "Не возвращено")
+                    @if (!item.DateRet.HasValue)
+                    {
+                        @: |
+                        @Html.ActionLink("Принять", "ReturnBook", new { id = item.Id })
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Подробнее", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

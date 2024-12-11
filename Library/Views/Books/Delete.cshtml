@@ -1,0 +1,30 @@
+﻿@model Library.Models.Book
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Удалить книгу";
+}
+
+<h2>Удалить книгу</h2>
+
+<div>
+    <h3>Вы действительно хотите удалить эту книгу?</h3>
+    <dl>
+        <dt>Название</dt>
+        <dd>@Model.Name</dd>
+
+        <dt>Количество</dt>
+        <dd>@Model.Amount</dd>
+
+        <dt>Тип книги</dt>
+        <dd>@(Model.Type != null ? Model.Type.Type : "Не указан")</dd>
+    </dl>
+</div>
+
+@using (Html.BeginForm("Delete", "Books", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <input type="submit" value="Удалить" class="btn btn-danger" />
+    @Html.ActionLink("Назад к списку", "Index")
+}

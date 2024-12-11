@@ -1,0 +1,51 @@
+﻿@{
+    var currentUser = ViewContext.HttpContext.Session.GetString("UserLogin");
+    bool isLoggedIn = !string.IsNullOrEmpty(currentUser);
+    var errorMessage = TempData["ErrorMessage"] as string;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body>
+    <header>
+        <div style="display:flex; justify-content: space-between; align-items: center; padding:10px; background-color:#f0f0f0;">
+            <div>
+                <a href="@Url.Action("Index", "Home")" style="margin-right:20px;">Home</a>
+                <a href="@Url.Action("ClientCount", "Views")" style="margin-right:20px;">Статистика по клиентам</a>
+                <a href="@Url.Action("BooksAndReaders", "Views")" style="margin-right:20px;">Книги и читатели</a>
+            </div>
+            <div>
+                @if (isLoggedIn)
+                {
+                    <span>Пользователь: @currentUser</span>
+                    <span style="margin-left:20px;">
+                        <a href="@Url.Action("Logout", "Auth")">Выход</a>
+                    </span>
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Auth")">Вход</a>
+                }
+            </div>
+        </div>
+    </header>
+
+    <div class="container" style="margin-top:20px;">
+        @RenderBody()
+        
+    </div>
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <script>
+            alert('@errorMessage');
+        </script>
+    }
+    
+</body>
+</html>

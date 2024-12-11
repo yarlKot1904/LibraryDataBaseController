@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Вход";
+}
+<link rel="stylesheet" href="~/css/site.css" />
+<h2>Вход</h2>
+@using (Html.BeginForm("Login", "Auth", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        Логин: @Html.TextBox("login")
+    </div>
+    <div>
+        Пароль: @Html.Password("password")
+    </div>
+    <div>
+        <input type="submit" value="Войти" />
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="text-danger">@ViewBag.Error</div>
+}

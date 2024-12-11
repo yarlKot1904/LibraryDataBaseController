@@ -1,0 +1,34 @@
+﻿@page
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<script src="/_framework/aspnetcore-browser-refresh.js"></script>
+<h1>Добро пожаловать в библиотечную систему</h1>
+
+<ul>
+    <li><a href="/Clients/Index">Управление клиентами</a></li>
+    <li><a href="/Books/Index">Управление книгами</a></li>
+    <li><a href="/BookTypes/Index">Типы книг</a></li>
+    <li><a href="/Journal/Index">Журнал выдачи</a></li>
+    <li>@Html.ActionLink("Выдать книгу", "GiveBook","Journal")</li>
+    <li>@Html.ActionLink("Reports", "Index", "Reports")</li>
+</ul>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Максимальный штраф</th>
+            <th>Самая популярная книга</th>
+            <th>Второе место</th>
+            <th>Третье место</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewBag.MaxFine</td>
+            <td>@ViewBag.FirstBook</td>
+            <td>@ViewBag.SecondBook</td>
+            <td>@ViewBag.ThirdBook</td>
+        </tr>
+    </tbody>
+</table>

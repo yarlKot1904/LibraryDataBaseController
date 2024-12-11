@@ -1,0 +1,26 @@
+﻿@model Library.Models.BookType
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Детали типа книги";
+}
+
+<h2>Детали типа книги</h2>
+
+<dl>
+    <dt>Тип</dt>
+    <dd>@Model.Type</dd>
+
+    <dt>Штраф</dt>
+    <dd>@Model.Fine</dd>
+
+    <dt>Макс. дней</dt>
+    <dd>@Model.MaxDays</dd>
+
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Удалить", "Delete", new { id = Model.Id })
+</dl>
+
+<p>
+    @Html.ActionLink("Назад к списку", "Index")
+</p>

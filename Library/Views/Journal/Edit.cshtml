@@ -1,0 +1,47 @@
+﻿@model Library.Models.Journal
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Редактировать запись журнала";
+}
+
+<h2>Редактировать запись</h2>
+
+@using (Html.BeginForm("Edit", "Journal", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.Id)
+
+    <div>
+        @Html.LabelFor(m => m.BookId, "Книга")
+        @Html.DropDownListFor(m => m.BookId, (SelectList)ViewBag.Books, "Выберите книгу", new { @class = "form-control" })
+    </div>
+
+
+    <div>
+        @Html.LabelFor(m => m.ClientId, "Читатель")
+        @Html.DropDownListFor(m => m.ClientId, (SelectList)ViewBag.Clients, "Выберите читателя", new { @class = "form-control" })
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.DateBeg, "Дата выдачи")
+        @Html.TextBoxFor(t => t.DateBeg, "{0:yyyy-MM-dd}", new { type = "date" })
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.DateEnd, "Дата возврата по плану")
+        @Html.TextBoxFor(t => t.DateEnd, "{0:yyyy-MM-dd}", new { type = "date" })
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.DateRet, "Фактическая дата возврата")
+        @Html.TextBoxFor(t => t.DateRet, "{0:yyyy-MM-dd}", new { type = "date" })
+
+    </div>
+
+    <div>
+        <input type="submit" value="Сохранить" class="btn btn-primary" />
+        @Html.ActionLink("Назад к списку", "Index")
+    </div>
+}

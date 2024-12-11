@@ -1,0 +1,34 @@
+﻿@model Library.Models.Client
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Детали клиента";
+}
+
+<h2>Детали клиента</h2>
+
+<dl>
+    <dt>Фамилия</dt>
+    <dd>@Model.LastName</dd>
+
+    <dt>Имя</dt>
+    <dd>@Model.FirstName</dd>
+
+    <dt>Отчество</dt>
+    <dd>@Model.MiddleName</dd>
+
+    <dt>Паспорт</dt>
+    <dd>@(Model.PassportSeries + " " + Model.PassportNumber)</dd>
+
+    <dt>Количество книг на руках</dt>
+    <dd>@ViewBag.BooksOnHand</dd>
+    <dt>Штраф</dt>
+    <dd>@ViewBag.Fine</dd>
+
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Удалить", "Delete", new { id = Model.Id })
+</dl>
+
+<p>
+    @Html.ActionLink("Назад к списку", "Index")
+</p>

@@ -1,0 +1,30 @@
+﻿@model Library.Models.BookType
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Удалить тип книги";
+}
+
+<h2>Удалить тип книги</h2>
+
+<div>
+    <h3>Вы действительно хотите удалить этот тип?</h3>
+    <dl>
+        <dt>Тип</dt>
+        <dd>@Model.Type</dd>
+
+        <dt>Штраф</dt>
+        <dd>@Model.Fine</dd>
+
+        <dt>Макс. дней</dt>
+        <dd>@Model.MaxDays</dd>
+    </dl>
+</div>
+
+@using (Html.BeginForm("Delete", "BookTypes", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <input type="submit" value="Удалить" class="btn btn-danger" />
+    @Html.ActionLink("Назад к списку", "Index")
+}

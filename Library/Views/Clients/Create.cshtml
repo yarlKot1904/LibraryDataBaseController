@@ -1,0 +1,44 @@
+﻿@model Library.Models.Client
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Добавить клиента";
+}
+
+<h2>Добавить клиента</h2>
+
+@using (Html.BeginForm("Create", "Clients", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.MiddleName)
+        @Html.TextBoxFor(m => m.MiddleName)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.PassportSeries)
+        @Html.TextBoxFor(m => m.PassportSeries)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.PassportNumber)
+        @Html.TextBoxFor(m => m.PassportNumber)
+    </div>
+
+    <input type="submit" value="Сохранить" />
+}
+
+<p>
+    @Html.ActionLink("Назад к списку", "Index")
+</p>

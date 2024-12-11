@@ -1,0 +1,33 @@
+﻿@model Library.Models.Journal
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Детали записи журнала";
+}
+
+<h2>Детали записи</h2>
+
+<dl>
+    <dt>Книга</dt>
+    <dd>@Html.ActionLink(@Model.BookName, "Details", "Books", new { id = Model.BookId })</dd>
+
+    <dt>Читатель</dt>
+    <dd>@Html.ActionLink(@Model.ClientFullName, "Details", "Clients", new { id = Model.ClientId })</dd>
+
+    <dt>Дата выдачи</dt>
+    <dd>@Model.DateBeg.ToShortDateString()</dd>
+
+    <dt>Дата возврата по плану</dt>
+    <dd>@Model.DateEnd.ToShortDateString()</dd>
+
+    <dt>Фактическая дата возврата</dt>
+    <dd>
+        @(Model.DateRet.HasValue ? Model.DateRet.Value.ToShortDateString() : "Не возвращено")
+    </dd>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Удалить", "Delete", new { id = Model.Id })
+</dl>
+
+<p>
+    @Html.ActionLink("Назад к списку", "Index")
+</p>

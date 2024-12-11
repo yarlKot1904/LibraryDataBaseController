@@ -1,0 +1,24 @@
+﻿@model Library.Models.Client
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Удалить клиента";
+}
+
+<h2>Удалить клиента</h2>
+
+<div>
+    <h3>Вы действительно хотите удалить этого клиента?</h3>
+    <p><strong>@Model.LastName @Model.FirstName @Model.MiddleName</strong></p>
+    <p>@(Model.PassportSeries + " " + Model.PassportNumber)</p>
+</div>
+
+@using (Html.BeginForm("Delete", "Clients", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id)
+    <input type="submit" value="Удалить" />
+}
+
+<p>
+    @Html.ActionLink("Назад к списку", "Index")
+</p>

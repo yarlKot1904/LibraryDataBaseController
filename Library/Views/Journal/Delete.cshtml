@@ -1,0 +1,36 @@
+﻿@model Library.Models.Journal
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Удалить запись из журнала";
+}
+
+<h2>Удалить запись</h2>
+
+<div>
+    <h3>Вы действительно хотите удалить эту запись?</h3>
+    <dl>
+        <dt>Книга</dt>
+        <dd>@Model.BookName</dd>
+
+        <dt>Читатель</dt>
+        <dd>@Model.ClientFullName</dd>
+
+        <dt>Дата выдачи</dt>
+        <dd>@Model.DateBeg.ToShortDateString()</dd>
+
+        <dt>Дата возврата по плану</dt>
+        <dd>@Model.DateEnd.ToShortDateString()</dd>
+
+        <dt>Фактическая дата возврата</dt>
+        <dd>@(Model.DateRet.HasValue ? Model.DateRet.Value.ToShortDateString() : "Не возвращено")</dd>
+    </dl>
+</div>
+
+@using (Html.BeginForm("Delete", "Journal", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <input type="submit" value="Удалить" class="btn btn-danger" />
+    @Html.ActionLink("Назад к списку", "Index")
+}

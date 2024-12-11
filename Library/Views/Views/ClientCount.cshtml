@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Library.Models.ClientCountRecord>
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Данные по клиентам и количеству книг";
+}
+
+<h2>Клиенты и количество книг на руках</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Книг на руках</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.FirstName</td>
+                <td>@c.LastName</td>
+                <td>@c.BooksOnHand</td>
+            </tr>
+        }
+    </tbody>
+</table>

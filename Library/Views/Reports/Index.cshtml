@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Отчёты"; 
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Отчёты</h2>
+
+<h3>Три самые популярные книги</h3>
+@using (Html.BeginForm("TopThreeBooksTxt", "Reports", FormMethod.Get))
+{
+    <label>Дата начала: </label>
+    <input type="date" name="start_date" />
+    <label>Дата окончания: </label>
+    <input type="date" name="end_date" />
+    <input type="submit" value="Сформировать txt" />
+}
+
+<h3>Расчёт штрафов</h3>
+@using (Html.BeginForm("CalculateFinesTxt", "Reports", FormMethod.Get))
+{
+    <label>Дата начала: </label>
+    <input type="date" name="start_date" />
+    <label>Дата окончания: </label>
+    <input type="date" name="end_date" />
+    <input type="submit" value="Сформировать txt" />
+}

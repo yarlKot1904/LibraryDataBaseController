@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Library.Models.BookType>
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Список типов книг";
+}
+
+<h2>Список типов книг</h2>
+
+<p>
+    @Html.ActionLink("Добавить тип книги", "Create")
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Тип</th>
+            <th>Штраф</th>
+            <th>Макс. дней</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>@t.Type</td>
+                <td>@t.Fine</td>
+                <td>@t.MaxDays</td>
+                <td>
+                    @Html.ActionLink("Подробнее", "Details", new { id = t.Id }) |
+                    @Html.ActionLink("Изменить", "Edit", new { id = t.Id }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = t.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Library.Models.Client>
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Список клиентов";
+}
+
+<h2>Список клиентов</h2>
+
+<p>
+    @Html.ActionLink("Добавить нового клиента", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Паспорт</th>
+        <th></th>
+    </tr>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.LastName</td>
+            <td>@c.FirstName</td>
+            <td>@c.MiddleName</td>
+            <td>@(c.PassportSeries + " " + c.PassportNumber)</td>
+            <td>
+                @Html.ActionLink("Подробнее", "Details", new { id = c.Id }) |
+                @Html.ActionLink("Изменить", "Edit", new { id = c.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = c.Id })
+            </td>
+        </tr>
+    }
+</table>

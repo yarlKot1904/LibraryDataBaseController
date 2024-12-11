@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Library.Models.BooksAndReadersRecord>
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewBag.Title = "Книги и читатели";
+}
+
+<h2>Книги и читатели</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Книга</th>
+            <th>Имя читателя</th>
+            <th>Фамилия читателя</th>
+            <th>Отчество читателя</th>
+            <th>Дата выдачи</th>
+            <th>Дата возврата по плану</th>
+            <th>Фактическая дата возврата</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.BookName</td>
+                <td>@r.FirstName</td>
+                <td>@r.LastName</td>
+                <td>@r.MiddleName</td>
+                <td>@r.DataBeg.ToShortDateString()</td>
+                <td>@r.DateEnd.ToShortDateString()</td>
+                <td>@(r.DateRet.HasValue ? r.DateRet.Value.ToShortDateString() : "")</td>
+            </tr>
+        }
+    </tbody>
+</table>
